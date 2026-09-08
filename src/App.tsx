@@ -30,9 +30,9 @@ function Navbar() {
           <a href="#icp" className="text-sm text-slate-300 hover:text-white transition">Who It's For</a>
           <a href="#pricing" className="text-sm text-slate-300 hover:text-white transition">Pricing</a>
           <a href="#why" className="text-sm text-slate-300 hover:text-white transition">Why RevFlow</a>
-          <button className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition">
+          <a href="#waitlist" className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition inline-block">
             Join Waitlist
-          </button>
+          </a>
         </div>
         <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X /> : <Menu />}
@@ -46,13 +46,13 @@ function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-slate-950/95 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex flex-col gap-4"
           >
-            <a href="#pillars" className="text-sm text-slate-300">Platform</a>
-            <a href="#icp" className="text-sm text-slate-300">Who It's For</a>
-            <a href="#pricing" className="text-sm text-slate-300">Pricing</a>
-            <a href="#why" className="text-sm text-slate-300">Why RevFlow</a>
-            <button className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg">
+            <a href="#pillars" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Platform</a>
+            <a href="#icp" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Who It's For</a>
+            <a href="#pricing" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Pricing</a>
+            <a href="#why" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Why RevFlow</a>
+            <a href="#waitlist" onClick={() => setMobileOpen(false)} className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg text-center">
               Join Waitlist
-            </button>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
@@ -112,14 +112,14 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button className="group px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition flex items-center gap-2">
+          <a href="#waitlist" className="group px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition flex items-center gap-2">
             Start Building Free
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button className="px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center gap-2">
+          </a>
+          <a href="#pillars" className="px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center gap-2">
             <Play className="w-4 h-4" />
-            Watch Demo
-          </button>
+            See It In Action
+          </a>
         </motion.div>
 
         <motion.div
@@ -1203,7 +1203,7 @@ function WaitlistCTA() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section className="relative py-32 bg-slate-950 overflow-hidden">
+    <section id="waitlist" className="relative py-32 bg-slate-950 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-violet-600/10 rounded-full blur-3xl" />
       
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
