@@ -1,6 +1,6 @@
 # RevFlow — The Visual Canvas for Revenue Operations
 
-> **A complete GTM orchestration platform for modern revenue teams. Built by [Megnito.com](https://megnito.com).**
+> **A complete GTM orchestration platform for modern revenue teams. Built by [Megnitoo.com](https://megnitoo.com).**
 
 [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-emerald)]()
 [![License](https://img.shields.io/badge/License-Proprietary-red)]()
@@ -839,7 +839,7 @@ Proprietary — All rights reserved.
 
 ## 🙏 Acknowledgments
 
-Built with ❤️ by [Megnito.com](https://megnito.com)
+Built with ❤️ by [Megnitoo.com](https://megnitoo.com)
 
 Special thanks to:
 - Supabase team for the incredible backend platform
@@ -853,7 +853,7 @@ Special thanks to:
 
 - **Website**: [revflow.app](https://revflow.app)
 - **Email**: CEO@MEGNITOO.COM
-- **Co-Founder**: [Megnito.com](https://megnito.com)
+- **Co-Founder**: [Megnitoo.com](https://megnitoo.com)
 
 ---
 

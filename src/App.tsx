@@ -1396,7 +1396,7 @@ function AboutSection() {
             {/* Megnito Logo/Brand */}
             <div className="flex-shrink-0">
               <a
-                href="https://megnito.com"
+                href="https://megnitoo.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col items-center gap-3"
@@ -1404,7 +1404,7 @@ function AboutSection() {
                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-violet-500/20 group-hover:shadow-violet-500/40 transition-all">
                   <span className="text-3xl font-black text-white">M</span>
                 </div>
-                <span className="text-lg font-bold text-white group-hover:text-violet-300 transition">Megnito.com</span>
+                <span className="text-lg font-bold text-white group-hover:text-violet-300 transition">Megnitoo.com</span>
               </a>
             </div>
 
@@ -1421,27 +1421,27 @@ function AboutSection() {
               <h3 className="text-2xl font-bold text-white mb-3">
                 RevFlow is proudly co-founded by{' '}
                 <a
-                  href="https://megnito.com"
+                  href="https://megnitoo.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent hover:from-violet-300 hover:to-cyan-300 transition"
                 >
-                  Megnito.com
+                  Megnitoo.com
                 </a>
               </h3>
               <p className="text-slate-400 leading-relaxed mb-4">
-                Megnito.com brings deep expertise in building scalable SaaS products and go-to-market solutions.
+                Megnitoo.com brings deep expertise in building scalable SaaS products and go-to-market solutions.
                 Together, we're redefining how revenue teams orchestrate data, AI, and execution — from a single visual canvas.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-white/5">
                 <a
-                  href="https://megnito.com"
+                  href="https://megnitoo.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition"
                 >
                   <Globe className="w-4 h-4 text-violet-400" />
-                  <span>megnito.com</span>
+                  <span>megnitoo.com</span>
                   <ArrowRight className="w-3 h-3" />
                 </a>
                 <a
@@ -1492,8 +1492,8 @@ function Footer() {
             </div>
             <p className="text-sm text-slate-400 mb-4">
               The visual canvas for revenue operations. Built in partnership with{' '}
-              <a href="https://megnito.com" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition">
-                Megnito.com
+              <a href="https://megnitoo.com" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition">
+                Megnitoo.com
               </a>
             </p>
           </div>
@@ -1517,9 +1517,9 @@ function Footer() {
                 <Mail className="w-4 h-4" />
                 CEO@MEGNITOO.COM
               </a>
-              <a href="https://megnito.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+              <a href="https://megnitoo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
                 <Globe className="w-4 h-4" />
-                megnito.com
+                megnitoo.com
               </a>
               <div className="flex items-center gap-4 mt-2">
                 <a href="#" className="text-slate-400 hover:text-white transition"><Linkedin className="w-5 h-5" /></a>
@@ -1530,7 +1530,7 @@ function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500">© 2026 RevFlow. A Megnito.com venture. Building the future of GTM.</p>
+          <p className="text-sm text-slate-500">© 2026 RevFlow. A Megnitoo.com venture. Building the future of GTM.</p>
           <div className="flex items-center gap-2 text-xs text-slate-500">
             <Shield className="w-3 h-3" />
             <span>SOC2 Compliant</span>
