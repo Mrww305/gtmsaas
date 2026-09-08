@@ -274,11 +274,26 @@ function CanvasPreview() {
                 <div className="w-3 h-3 rounded-full bg-green-500/60" />
               </div>
               <span className="text-sm text-slate-400 font-mono">The Job Change Pounce — v2.3</span>
+              <span className="px-2 py-0.5 text-xs bg-violet-500/20 text-violet-300 rounded-full">🔄 Versioned</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <span className="text-xs text-amber-300 font-medium">🧪 Dry Run Mode</span>
+              </div>
               <span className="px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-300 rounded-full">● Live</span>
-              <span className="text-xs text-slate-500">1,247 runs this week</span>
+              <span className="text-xs text-slate-500">1,247 runs</span>
             </div>
+          </div>
+
+          {/* Cost estimator bar */}
+          <div className="flex items-center justify-between px-6 py-2 border-b border-white/5 bg-slate-900/50">
+            <div className="flex items-center gap-4 text-xs">
+              <span className="text-slate-400">Estimated cost: <span className="text-cyan-300 font-medium">$0.023/run</span></span>
+              <span className="text-slate-400">This test: <span className="text-cyan-300 font-medium">$0.46</span> (20 leads)</span>
+              <span className="text-slate-400">Usage: <span className="text-emerald-300 font-medium">4,231/10,000</span> enrichments</span>
+            </div>
+            <span className="text-xs text-slate-500">Rate limit: 87/100 req/min</span>
           </div>
 
           {/* Canvas area */}
@@ -419,6 +434,67 @@ function CanvasPreview() {
                 <p className={`text-lg font-bold ${stat.color}`}>{stat.value}</p>
               </div>
             ))}
+          </div>
+
+          {/* Error handling panel */}
+          <div className="border-t border-white/5 bg-slate-900/30 p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Recent Errors (Auto-Handled)</span>
+              <span className="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-300 rounded-full">3 recovered</span>
+            </div>
+            <div className="grid md:grid-cols-3 gap-3">
+              <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/10">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-red-400" />
+                  <span className="text-xs text-red-300 font-medium">Apollo Rate Limit</span>
+                </div>
+                <p className="text-xs text-slate-400">Auto-retried in 30s → Fallback to Clearbit ✓</p>
+              </div>
+              <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-amber-400" />
+                  <span className="text-xs text-amber-300 font-medium">OpenAI Empty Output</span>
+                </div>
+                <p className="text-xs text-slate-400">Retry #2 succeeded with schema enforcement ✓</p>
+              </div>
+              <div className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/10">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-blue-400" />
+                  <span className="text-xs text-blue-300 font-medium">HubSpot Sync Delay</span>
+                </div>
+                <p className="text-xs text-slate-400">Queued in DLQ → Processed in 2.1s ✓</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* User trust features */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-8 grid md:grid-cols-3 gap-4"
+        >
+          <div className="p-5 rounded-xl bg-slate-800/30 border border-white/5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📤</span>
+              <span className="text-sm font-bold text-white">One-Click Data Export</span>
+            </div>
+            <p className="text-xs text-slate-400">Export all enriched data as CSV/JSON. You own your data — always.</p>
+          </div>
+          <div className="p-5 rounded-xl bg-slate-800/30 border border-white/5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📜</span>
+              <span className="text-sm font-bold text-white">Full Audit Log</span>
+            </div>
+            <p className="text-xs text-slate-400">Track every workflow run, every change, every error. Debug in seconds.</p>
+          </div>
+          <div className="p-5 rounded-xl bg-slate-800/30 border border-white/5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">🔄</span>
+              <span className="text-sm font-bold text-white">Workflow Versioning</span>
+            </div>
+            <p className="text-xs text-slate-400">Auto-save every change. Roll back to any previous version in one click.</p>
           </div>
         </motion.div>
 
@@ -605,7 +681,9 @@ function TechStack() {
     { category: 'Frontend', items: ['React + TypeScript', 'React Flow (canvas)', 'Tailwind CSS', 'Framer Motion'] },
     { category: 'Backend', items: ['Node.js / Fastify', 'Temporal (workflows)', 'BullMQ (job queues)', 'Webhook relay layer'] },
     { category: 'Database', items: ['PostgreSQL (primary)', 'Redis (caching/queues)', 'S3 (file storage)', 'ClickHouse (analytics)'] },
-    { category: 'Infrastructure', items: ['AWS (ECS + RDS)', 'CloudFront CDN', 'Vercel (frontend)', 'Sentry (monitoring)'] }
+    { category: 'Infrastructure', items: ['AWS (ECS + RDS)', 'CloudFront CDN', 'Vercel (frontend)', 'Sentry (monitoring)'] },
+    { category: 'Observability', items: ['Datadog (metrics)', 'PostHog (product analytics)', 'Sentry (errors)', 'PagerDuty (alerting)'] },
+    { category: 'Metering & Billing', items: ['Stripe (payments)', 'Custom usage meter', 'Per-user rate limits', 'Cost attribution'] }
   ];
 
   const integrations = [
@@ -721,6 +799,196 @@ function TechStack() {
   );
 }
 
+function ProductionReadiness() {
+  const safeguards = [
+    {
+      icon: '🚀',
+      title: 'Quick Start Wizard',
+      description: 'Pick a template → connect 1 source → run your first 10 leads in 4 minutes. Zero config required.',
+      priority: 'P0'
+    },
+    {
+      icon: '💰',
+      title: 'Usage Metering',
+      description: 'Real-time tracking of API calls, workflow executions, and records stored. Hard caps at tier limits.',
+      priority: 'P0'
+    },
+    {
+      icon: '🧪',
+      title: 'Dry Run Mode',
+      description: 'Test workflows without sending emails or burning credits. See estimated cost before executing.',
+      priority: 'P1'
+    },
+    {
+      icon: '⚠️',
+      title: 'Error Handling UX',
+      description: 'Visual error states, retry options, and clear explanations. Users never feel lost when things fail.',
+      priority: 'P1'
+    },
+    {
+      icon: '📤',
+      title: 'Data Export',
+      description: 'CSV/JSON export from any workflow run. Users own their data and can leave anytime.',
+      priority: 'P2'
+    },
+    {
+      icon: '📜',
+      title: 'Audit Log',
+      description: 'Track who ran what, when, and with what results. Essential for debugging and compliance.',
+      priority: 'P2'
+    },
+    {
+      icon: '🔄',
+      title: 'Workflow Versioning',
+      description: 'Auto-save versions with rollback capability. Edit live workflows without fear.',
+      priority: 'P2'
+    },
+    {
+      icon: '🗑️',
+      title: 'GDPR Deletion',
+      description: 'One-click account deletion with cascading data removal. Required for EU customers.',
+      priority: 'P2'
+    }
+  ];
+
+  return (
+    <section className="relative py-32 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-emerald-400 uppercase tracking-wider">Production-Ready from Day 1</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Built to Scale, Not Break</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Every safeguard you need to run mission-critical revenue operations — without the enterprise complexity.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {safeguards.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              className="p-6 rounded-xl bg-slate-800/30 border border-white/5 hover:border-emerald-500/20 transition-all"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <span className="text-3xl">{item.icon}</span>
+                <span className={`px-2 py-0.5 text-xs rounded-full ${
+                  item.priority === 'P0' ? 'bg-red-500/10 text-red-300' :
+                  item.priority === 'P1' ? 'bg-amber-500/10 text-amber-300' :
+                  'bg-slate-500/10 text-slate-300'
+                }`}>
+                  {item.priority}
+                </span>
+              </div>
+              <h4 className="text-base font-bold text-white mb-2">{item.title}</h4>
+              <p className="text-sm text-slate-400 leading-relaxed">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Solo founder callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 p-8 rounded-2xl bg-gradient-to-r from-violet-500/10 to-cyan-500/10 border border-violet-500/20"
+        >
+          <div className="flex items-start gap-4">
+            <div className="text-4xl">👨‍💻</div>
+            <div>
+              <h4 className="text-xl font-bold text-white mb-2">Solo Founder Optimized</h4>
+              <p className="text-slate-300 leading-relaxed">
+                Built by a solo technical founder who knows the constraints. Every feature is designed to minimize support tickets, 
+                maximize self-service, and keep operational overhead low. You get enterprise-grade reliability without the enterprise-grade complexity.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ActivationFlow() {
+  const steps = [
+    { step: 1, title: 'Pick Your Play', description: 'Choose from 4 flagship templates or start blank', time: '30 sec' },
+    { step: 2, title: 'Connect Data Source', description: 'Webhook, CSV, or LinkedIn Signal Harvester', time: '1 min' },
+    { step: 3, title: 'Add Enrichment', description: 'BYO Apollo/Clearbit key or use ours', time: '30 sec' },
+    { step: 4, title: 'Configure AI', description: 'BYO OpenAI key or use pre-prompted nodes', time: '1 min' },
+    { step: 5, title: 'Connect Execution', description: 'Smartlead, Instantly, or Slack alerts', time: '1 min' },
+    { step: 6, title: 'Test & Launch', description: 'Dry run first, then execute live', time: '30 sec' }
+  ];
+
+  return (
+    <section className="relative py-32 bg-slate-950">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-violet-400 uppercase tracking-wider">Activation Flow</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">From Signup to First Lead in 4 Minutes</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            No complex setup. No engineering required. Just pick a template, connect your tools, and run.
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-500 to-cyan-500 hidden md:block" />
+
+          <div className="space-y-6">
+            {steps.map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative flex items-start gap-6"
+              >
+                <div className="relative z-10 flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-violet-500/20">
+                  {item.step}
+                </div>
+                <div className="flex-1 p-6 rounded-xl bg-slate-800/30 border border-white/5">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-lg font-bold text-white">{item.title}</h4>
+                    <span className="text-xs text-slate-500 font-medium">{item.time}</span>
+                  </div>
+                  <p className="text-sm text-slate-400">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <Check className="w-5 h-5 text-emerald-400" />
+            <span className="text-white font-medium">Total time: 4 minutes 30 seconds</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function PricingSection() {
   const tiers = [
     {
@@ -728,7 +996,7 @@ function PricingSection() {
       price: '$499',
       period: '/mo',
       description: 'For small GTM teams getting started with orchestration.',
-      features: ['Up to 5 seats', '10K records enriched/mo', '3 active workflows', 'Email + LinkedIn channels', 'Basic AI scoring', 'Community support'],
+      features: ['Up to 5 seats', '10K records enriched/mo', '3 active workflows', 'Email + LinkedIn channels', 'Basic AI scoring', 'Usage metering dashboard', 'Dry run mode', 'Community support'],
       cta: 'Start Free Trial',
       popular: false
     },
@@ -737,7 +1005,7 @@ function PricingSection() {
       price: '$1,499',
       period: '/mo',
       description: 'For scaling teams that need full-stack GTM automation.',
-      features: ['Up to 25 seats', '100K records enriched/mo', 'Unlimited workflows', 'All channels + ads', 'Advanced AI agents', 'Priority support + CSM', 'Custom integrations'],
+      features: ['Up to 25 seats', '100K records enriched/mo', 'Unlimited workflows', 'All channels + ads', 'Advanced AI agents', 'Cost attribution per workflow', 'Audit log & versioning', 'Priority support + CSM'],
       cta: 'Start Free Trial',
       popular: true
     },
@@ -746,7 +1014,7 @@ function PricingSection() {
       price: 'Custom',
       period: '',
       description: 'For organizations with complex compliance and scale needs.',
-      features: ['Unlimited seats', 'Unlimited enrichment', 'Dedicated infrastructure', 'SSO + SCIM', 'SOC2 + HIPAA', 'Dedicated solutions engineer', 'SLA guarantees'],
+      features: ['Unlimited seats', 'Unlimited enrichment', 'Dedicated infrastructure', 'SSO + SCIM', 'SOC2 + HIPAA', 'Custom rate limits', 'Dedicated solutions engineer', 'SLA guarantees'],
       cta: 'Contact Sales',
       popular: false
     }
@@ -762,9 +1030,9 @@ function PricingSection() {
           className="text-center mb-16"
         >
           <span className="text-sm font-medium text-amber-400 uppercase tracking-wider">Phase 4: Pricing Strategy</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Pricing That Scales With You</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Transparent, Usage-Based Pricing</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Value metric: workflows executed + records enriched. Pay for outcomes, not seats.
+            Real-time metering dashboard. Hard caps at tier limits. No surprise bills. Pay for outcomes, not seats.
           </p>
         </motion.div>
 
@@ -1023,6 +1291,8 @@ export default function App() {
       <ICPSection />
       <ProblemsSection />
       <TechStack />
+      <ProductionReadiness />
+      <ActivationFlow />
       <PricingSection />
       <LaunchSection />
       <WaitlistCTA />
