@@ -993,20 +993,20 @@ function PricingSection() {
   const tiers = [
     {
       name: 'Starter',
-      price: '$499',
+      price: '$249',
       period: '/mo',
       description: 'For small GTM teams getting started with orchestration.',
       features: ['Up to 5 seats', '10K records enriched/mo', '3 active workflows', 'Email + LinkedIn channels', 'Basic AI scoring', 'Usage metering dashboard', 'Dry run mode', 'Community support'],
-      cta: 'Start Free Trial',
+      cta: 'Start 12-Day Free Trial',
       popular: false
     },
     {
       name: 'Growth',
-      price: '$1,499',
+      price: '$749',
       period: '/mo',
       description: 'For scaling teams that need full-stack GTM automation.',
       features: ['Up to 25 seats', '100K records enriched/mo', 'Unlimited workflows', 'All channels + ads', 'Advanced AI agents', 'Cost attribution per workflow', 'Audit log & versioning', 'Priority support + CSM'],
-      cta: 'Start Free Trial',
+      cta: 'Start 12-Day Free Trial',
       popular: true
     },
     {
@@ -1032,7 +1032,7 @@ function PricingSection() {
           <span className="text-sm font-medium text-amber-400 uppercase tracking-wider">Pricing</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Transparent, Usage-Based Pricing</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Real-time metering dashboard. Hard caps at tier limits. No surprise bills. Pay for outcomes, not seats.
+            Start with a <span className="text-white font-medium">12-day free trial</span> — no credit card required. Real-time metering dashboard. Hard caps at tier limits. No surprise bills.
           </p>
         </motion.div>
 
@@ -1052,7 +1052,12 @@ function PricingSection() {
             >
               {tier.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-xs font-medium rounded-full">
-                  Most Popular
+                  Most Popular • 12 Days Free
+                </div>
+              )}
+              {!tier.popular && tier.name !== 'Enterprise' && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-medium rounded-full">
+                  12 Days Free
                 </div>
               )}
               <h3 className="text-lg font-bold text-white">{tier.name}</h3>
