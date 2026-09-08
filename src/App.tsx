@@ -1,5 +1,702 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Database, Brain, Workflow, Zap, ArrowRight, Check, ChevronDown,
+  Sparkles, Shield, Users, BarChart3, Globe, Layers, Play,
+  Star, Menu, X, Mail, Linkedin, MessageSquare, Target
+} from 'lucide-react';
+
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/90 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center">
+            <Zap className="w-4 h-4 text-white" />
+          </div>
+          <span className="text-xl font-bold text-white">RevFlow</span>
+        </div>
+        <div className="hidden md:flex items-center gap-8">
+          <a href="#pillars" className="text-sm text-slate-300 hover:text-white transition">Platform</a>
+          <a href="#icp" className="text-sm text-slate-300 hover:text-white transition">Who It's For</a>
+          <a href="#pricing" className="text-sm text-slate-300 hover:text-white transition">Pricing</a>
+          <a href="#launch" className="text-sm text-slate-300 hover:text-white transition">Launch</a>
+          <button className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition">
+            Join Waitlist
+          </button>
+        </div>
+        <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
+          {mobileOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-slate-950/95 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex flex-col gap-4"
+          >
+            <a href="#pillars" className="text-sm text-slate-300">Platform</a>
+            <a href="#icp" className="text-sm text-slate-300">Who It's For</a>
+            <a href="#pricing" className="text-sm text-slate-300">Pricing</a>
+            <a href="#launch" className="text-sm text-slate-300">Launch</a>
+            <button className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg">
+              Join Waitlist
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-slate-950" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-3xl" />
+      
+      {/* Grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300 mb-8">
+            <Sparkles className="w-3.5 h-3.5 text-violet-400" />
+            <span>Phase 1: Product Strategy & ICP Defined</span>
+          </div>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6"
+        >
+          The GTM Platform for{' '}
+          <span className="bg-gradient-to-r from-violet-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+            Revenue Teams
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          Unify data, AI, orchestration, and execution in one platform. 
+          Replace your fragmented stack of 12+ tools with a single source of truth 
+          that drives pipeline and revenue.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <button className="group px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition flex items-center gap-2">
+            Start Building Free
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <button className="px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center gap-2">
+            <Play className="w-4 h-4" />
+            Watch Demo
+          </button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-16 flex items-center justify-center gap-8 flex-wrap"
+        >
+          {['Salesforce', 'HubSpot', 'Snowflake', 'Clearbit', 'OpenAI'].map((name) => (
+            <span key={name} className="text-sm text-slate-500 font-medium">{name}</span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <ChevronDown className="w-5 h-5 text-slate-500 animate-bounce" />
+      </motion.div>
+    </section>
+  );
+}
+
+function Pillars() {
+  const pillars = [
+    {
+      icon: Database,
+      title: 'Data',
+      subtitle: 'Ingestion & Enrichment',
+      description: 'Real-time data syncing from 50+ sources. Auto-enrichment with firmographics, technographics, and intent signals.',
+      features: ['Bi-directional CRM sync', 'Real-time enrichment', 'Custom data models', 'Data health scoring'],
+      color: 'from-blue-500 to-cyan-400',
+      bgColor: 'bg-blue-500/10',
+      borderColor: 'border-blue-500/20'
+    },
+    {
+      icon: Brain,
+      title: 'AI',
+      subtitle: 'Agentic Workflows',
+      description: 'Predictive scoring, generative outreach, and autonomous agents that learn from your best reps.',
+      features: ['Predictive lead scoring', 'AI-generated sequences', 'Conversation intelligence', 'Deal risk detection'],
+      color: 'from-violet-500 to-purple-400',
+      bgColor: 'bg-violet-500/10',
+      borderColor: 'border-violet-500/20'
+    },
+    {
+      icon: Workflow,
+      title: 'Orchestration',
+      subtitle: 'Visual Workflow Builder',
+      description: 'Drag-and-drop workflow automation with conditional logic, time delays, and CRM-native routing.',
+      features: ['Visual flow builder', 'Conditional branching', 'SLA-based routing', 'Territory management'],
+      color: 'from-emerald-500 to-teal-400',
+      bgColor: 'bg-emerald-500/10',
+      borderColor: 'border-emerald-500/20'
+    },
+    {
+      icon: Zap,
+      title: 'Execution',
+      subtitle: 'Multi-Channel Activation',
+      description: 'Activate across every channel from a single workflow. Email, LinkedIn, SMS, ads — all orchestrated.',
+      features: ['Email sequences', 'LinkedIn automation', 'SMS & WhatsApp', 'Ad retargeting sync'],
+      color: 'from-orange-500 to-amber-400',
+      bgColor: 'bg-orange-500/10',
+      borderColor: 'border-orange-500/20'
+    }
+  ];
+
+  return (
+    <section id="pillars" className="relative py-32 bg-slate-950">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-violet-400 uppercase tracking-wider">Phase 2: Core Architecture</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">The 4 Pillars of Modern GTM</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Every feature is built around four interconnected building blocks that work together as a unified system.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {pillars.map((pillar, i) => (
+            <motion.div
+              key={pillar.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className={`relative group p-8 rounded-2xl border ${pillar.borderColor} ${pillar.bgColor} hover:bg-opacity-20 transition-all duration-300`}
+            >
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-5`}>
+                <pillar.icon className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-1">{pillar.title}</h3>
+              <p className="text-sm text-slate-400 mb-3">{pillar.subtitle}</p>
+              <p className="text-slate-300 mb-5 leading-relaxed">{pillar.description}</p>
+              <div className="grid grid-cols-2 gap-2">
+                {pillar.features.map((f) => (
+                  <div key={f} className="flex items-center gap-2 text-sm text-slate-400">
+                    <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    {f}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ICPSection() {
+  const icps = [
+    {
+      icon: Target,
+      title: 'RevOps Leaders',
+      description: 'VP/Director of Revenue Operations at mid-market and enterprise companies ($50M–$500M ARR) managing complex tech stacks.',
+      painPoints: ['Fragmented data across 12+ tools', 'Manual reporting & forecasting', 'Poor lead routing & SLA compliance'],
+      persona: 'Sarah, VP RevOps @ Series C SaaS'
+    },
+    {
+      icon: Users,
+      title: 'Growth Marketers',
+      description: 'Head of Growth or Demand Gen at B2B companies running multi-channel campaigns with limited engineering support.',
+      painPoints: ['Can\'t orchestrate across channels', 'Attribution is a black box', 'Campaign execution takes weeks'],
+      persona: 'Marcus, Head of Growth @ B2B Fintech'
+    },
+    {
+      icon: Layers,
+      title: 'GTM Engineers',
+      description: 'Technical operators building the systems that connect sales, marketing, and CS — the architects of revenue infrastructure.',
+      painPoints: ['Zapier/Make can\'t handle complexity', 'No version control for workflows', 'Constant context-switching between tools'],
+      persona: 'Alex, GTM Engineer @ PLG Startup'
+    }
+  ];
+
+  return (
+    <section id="icp" className="relative py-32 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-cyan-400 uppercase tracking-wider">Phase 1: ICP & Positioning</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Built for the Modern Revenue Team</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Three distinct buyer personas who feel the pain of fragmented GTM stacks every single day.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {icps.map((icp, i) => (
+            <motion.div
+              key={icp.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-white/10 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-white/10 flex items-center justify-center mb-5">
+                <icp.icon className="w-6 h-6 text-violet-300" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">{icp.title}</h3>
+              <p className="text-slate-400 text-sm mb-5 leading-relaxed">{icp.description}</p>
+              
+              <div className="mb-5">
+                <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Top Pain Points</p>
+                {icp.painPoints.map((p) => (
+                  <div key={p} className="flex items-start gap-2 text-sm text-slate-300 mb-2">
+                    <span className="text-red-400 mt-0.5">●</span>
+                    {p}
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4 border-t border-white/5">
+                <p className="text-xs text-slate-500">Persona:</p>
+                <p className="text-sm text-slate-300 font-medium">{icp.persona}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProblemsSection() {
+  const problems = [
+    {
+      number: '01',
+      title: 'Data Fragmentation',
+      legacy: 'Legacy CRMs silo data. Enrichment tools don\'t sync. Intent signals live in another tab.',
+      solution: 'RevFlow creates a unified data layer — every signal, every record, every touchpoint in one real-time graph.'
+    },
+    {
+      number: '02',
+      title: 'Execution Latency',
+      legacy: 'Building a multi-channel campaign takes 2 weeks, 3 tools, and a prayer that nothing breaks.',
+      solution: 'Design once, execute everywhere. Visual workflows that deploy across email, LinkedIn, SMS, and ads in minutes.'
+    },
+    {
+      number: '03',
+      title: 'AI Without Context',
+      legacy: 'AI tools generate generic output because they lack your data, your ICP, and your winning patterns.',
+      solution: 'Our AI agents learn from your best performers, your CRM data, and your win/loss patterns to generate hyper-relevant outreach.'
+    }
+  ];
+
+  return (
+    <section className="relative py-32 bg-slate-950">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-emerald-400 uppercase tracking-wider">Why RevFlow Wins</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">3 Problems We Solve Better</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Compared to legacy CRMs and disjointed point solutions, RevFlow eliminates the gaps that kill revenue.
+          </p>
+        </motion.div>
+
+        <div className="space-y-8">
+          {problems.map((p, i) => (
+            <motion.div
+              key={p.number}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-8 rounded-2xl bg-gradient-to-r from-slate-800/50 to-slate-900/50 border border-white/5"
+            >
+              <div className="flex items-start gap-6">
+                <span className="text-3xl font-bold bg-gradient-to-br from-violet-400 to-cyan-400 bg-clip-text text-transparent">{p.number}</span>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-white mb-4">{p.title}</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-lg bg-red-500/5 border border-red-500/10">
+                      <p className="text-xs font-medium text-red-400 uppercase mb-1">Legacy Approach</p>
+                      <p className="text-sm text-slate-300">{p.legacy}</p>
+                    </div>
+                    <div className="p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
+                      <p className="text-xs font-medium text-emerald-400 uppercase mb-1">RevFlow Way</p>
+                      <p className="text-sm text-slate-300">{p.solution}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PricingSection() {
+  const tiers = [
+    {
+      name: 'Starter',
+      price: '$499',
+      period: '/mo',
+      description: 'For small GTM teams getting started with orchestration.',
+      features: ['Up to 5 seats', '10K records enriched/mo', '3 active workflows', 'Email + LinkedIn channels', 'Basic AI scoring', 'Community support'],
+      cta: 'Start Free Trial',
+      popular: false
+    },
+    {
+      name: 'Growth',
+      price: '$1,499',
+      period: '/mo',
+      description: 'For scaling teams that need full-stack GTM automation.',
+      features: ['Up to 25 seats', '100K records enriched/mo', 'Unlimited workflows', 'All channels + ads', 'Advanced AI agents', 'Priority support + CSM', 'Custom integrations'],
+      cta: 'Start Free Trial',
+      popular: true
+    },
+    {
+      name: 'Enterprise',
+      price: 'Custom',
+      period: '',
+      description: 'For organizations with complex compliance and scale needs.',
+      features: ['Unlimited seats', 'Unlimited enrichment', 'Dedicated infrastructure', 'SSO + SCIM', 'SOC2 + HIPAA', 'Dedicated solutions engineer', 'SLA guarantees'],
+      cta: 'Contact Sales',
+      popular: false
+    }
+  ];
+
+  return (
+    <section id="pricing" className="relative py-32 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-amber-400 uppercase tracking-wider">Phase 4: Pricing Strategy</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Pricing That Scales With You</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Value metric: workflows executed + records enriched. Pay for outcomes, not seats.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {tiers.map((tier, i) => (
+            <motion.div
+              key={tier.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className={`relative p-8 rounded-2xl border transition-all ${
+                tier.popular
+                  ? 'bg-gradient-to-b from-violet-500/10 to-cyan-500/5 border-violet-500/30 scale-105'
+                  : 'bg-slate-800/30 border-white/5 hover:border-white/10'
+              }`}
+            >
+              {tier.popular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-xs font-medium rounded-full">
+                  Most Popular
+                </div>
+              )}
+              <h3 className="text-lg font-bold text-white">{tier.name}</h3>
+              <div className="mt-4 mb-2">
+                <span className="text-4xl font-bold text-white">{tier.price}</span>
+                <span className="text-slate-400">{tier.period}</span>
+              </div>
+              <p className="text-sm text-slate-400 mb-6">{tier.description}</p>
+              <button className={`w-full py-3 rounded-xl font-medium text-sm transition ${
+                tier.popular
+                  ? 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white hover:opacity-90'
+                  : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
+              }`}>
+                {tier.cta}
+              </button>
+              <div className="mt-6 space-y-3">
+                {tier.features.map((f) => (
+                  <div key={f} className="flex items-center gap-2 text-sm text-slate-300">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    {f}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LaunchSection() {
+  const timeline = [
+    { week: 'Week 1-2', title: 'Private Beta', description: 'Invite 50 design partners from RevOps community. Iterate on core workflows.' },
+    { week: 'Week 3-6', title: 'Content Blitz', description: 'Launch "GTM Stack Audit" tool. Publish 10 teardowns of broken revenue processes.' },
+    { week: 'Week 7-10', title: 'Public Beta', description: 'Open waitlist. Partner with 3 RevOps podcasts. Launch referral program.' },
+    { week: 'Week 11-12', title: 'GA Launch', description: 'Product Hunt launch. Press coverage. First 100 paying customers target.' }
+  ];
+
+  const campaigns = [
+    {
+      icon: BarChart3,
+      title: 'GTM Stack Audit',
+      description: 'Free interactive tool that scores your current stack and shows how much you\'re overspending on disconnected tools.',
+      metric: 'Target: 2,000 audits in 30 days'
+    },
+    {
+      icon: Globe,
+      title: '"Broken RevOps" Series',
+      description: 'Video teardowns of real GTM failures — leaked workflows, bad routing, AI gone wrong. Viral potential + thought leadership.',
+      metric: 'Target: 50K views across platforms'
+    },
+    {
+      icon: Star,
+      title: 'RevOps Leaderboard',
+      description: 'Public ranking of companies by GTM maturity. Creates FOMO, drives shares, and positions RevFlow as the standard.',
+      metric: 'Target: 500 companies listed'
+    }
+  ];
+
+  return (
+    <section id="launch" className="relative py-32 bg-slate-950">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-rose-400 uppercase tracking-wider">Phase 5: GTM Strategy</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">90-Day Launch Plan</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            From private beta to general availability — a phased approach to building momentum.
+          </p>
+        </motion.div>
+
+        {/* Timeline */}
+        <div className="grid md:grid-cols-4 gap-4 mb-20">
+          {timeline.map((item, i) => (
+            <motion.div
+              key={item.week}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="relative p-6 rounded-xl bg-slate-800/30 border border-white/5"
+            >
+              <span className="text-xs font-medium text-violet-400">{item.week}</span>
+              <h4 className="text-lg font-bold text-white mt-2 mb-2">{item.title}</h4>
+              <p className="text-sm text-slate-400">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Campaigns */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10"
+        >
+          <h3 className="text-2xl font-bold text-white mb-2">3 High-ROI Launch Campaigns</h3>
+          <p className="text-slate-400">Creative plays to build waitlist momentum and establish category authority.</p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {campaigns.map((c, i) => (
+            <motion.div
+              key={c.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-8 rounded-2xl bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-white/5 hover:border-violet-500/20 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-white/10 flex items-center justify-center mb-5">
+                <c.icon className="w-6 h-6 text-cyan-300" />
+              </div>
+              <h4 className="text-lg font-bold text-white mb-2">{c.title}</h4>
+              <p className="text-sm text-slate-400 mb-4 leading-relaxed">{c.description}</p>
+              <div className="pt-4 border-t border-white/5">
+                <p className="text-xs font-medium text-emerald-400">{c.metric}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WaitlistCTA() {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  return (
+    <section className="relative py-32 bg-slate-950 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-violet-600/10 rounded-full blur-3xl" />
+      
+      <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Ready to Unify Your GTM Stack?
+          </h2>
+          <p className="text-lg text-slate-400 mb-8">
+            Join 500+ RevOps leaders on the waitlist. Get early access, exclusive content, and shape the product roadmap.
+          </p>
+
+          {!submitted ? (
+            <div className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
+              <div className="relative flex-1 w-full">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@company.com"
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 transition"
+                />
+              </div>
+              <button
+                onClick={() => { if (email) setSubmitted(true); }}
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition whitespace-nowrap"
+              >
+                Join Waitlist
+              </button>
+            </div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/20"
+            >
+              <Check className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+              <p className="text-white font-medium">You're on the list!</p>
+              <p className="text-sm text-slate-400 mt-1">We'll reach out with early access details soon.</p>
+            </motion.div>
+          )}
+
+          <div className="mt-10 flex items-center justify-center gap-6 flex-wrap">
+            <div className="flex items-center gap-2 text-sm text-slate-400">
+              <Shield className="w-4 h-4 text-emerald-400" />
+              SOC2 Compliant
+            </div>
+            <div className="flex items-center gap-2 text-sm text-slate-400">
+              <Globe className="w-4 h-4 text-emerald-400" />
+              GDPR Ready
+            </div>
+            <div className="flex items-center gap-2 text-sm text-slate-400">
+              <Layers className="w-4 h-4 text-emerald-400" />
+              50+ Integrations
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-slate-950 border-t border-white/5 py-12">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center">
+              <Zap className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-lg font-bold text-white">RevFlow</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-slate-400 hover:text-white transition"><Mail className="w-5 h-5" /></a>
+            <a href="#" className="text-slate-400 hover:text-white transition"><Linkedin className="w-5 h-5" /></a>
+            <a href="#" className="text-slate-400 hover:text-white transition"><MessageSquare className="w-5 h-5" /></a>
+          </div>
+          <p className="text-sm text-slate-500">© 2026 RevFlow. Building the future of GTM.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function App() {
   return (
-    <div/>
+    <div className="bg-slate-950 min-h-screen">
+      <Navbar />
+      <Hero />
+      <Pillars />
+      <ICPSection />
+      <ProblemsSection />
+      <PricingSection />
+      <LaunchSection />
+      <WaitlistCTA />
+      <Footer />
+    </div>
   );
 }
