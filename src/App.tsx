@@ -90,9 +90,9 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6"
         >
-          The GTM Platform for{' '}
+          The Visual Canvas for{' '}
           <span className="bg-gradient-to-r from-violet-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
-            Revenue Teams
+            Revenue Operations
           </span>
         </motion.h1>
 
@@ -102,9 +102,8 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Unify data, AI, orchestration, and execution in one platform. 
-          Replace your fragmented stack of 12+ tools with a single source of truth 
-          that drives pipeline and revenue.
+          Connect signals, enrich data, generate AI outreach, and execute — all in one visual workflow. 
+          BYO API keys. Pre-built templates. No GTM engineer required.
         </motion.p>
 
         <motion.div
@@ -153,9 +152,9 @@ function Pillars() {
     {
       icon: Database,
       title: 'Data',
-      subtitle: 'Ingestion & Enrichment',
-      description: 'Real-time data syncing from 50+ sources. Auto-enrichment with firmographics, technographics, and intent signals.',
-      features: ['Bi-directional CRM sync', 'Real-time enrichment', 'Custom data models', 'Data health scoring'],
+      subtitle: 'Ingestion & Resolution',
+      description: 'Visual webhook catchers, CSV import, and BYO API keys for Apollo, Clearbit, and ScrapingBee. Domain-based dedup + enrichment waterfall routing.',
+      features: ['Visual webhook catchers', 'BYO API keys (Apollo, Clearbit)', 'Domain identity resolution', 'Enrichment waterfall routing'],
       color: 'from-blue-500 to-cyan-400',
       bgColor: 'bg-blue-500/10',
       borderColor: 'border-blue-500/20'
@@ -163,9 +162,9 @@ function Pillars() {
     {
       icon: Brain,
       title: 'AI',
-      subtitle: 'Agentic Workflows',
-      description: 'Predictive scoring, generative outreach, and autonomous agents that learn from your best reps.',
-      features: ['Predictive lead scoring', 'AI-generated sequences', 'Conversation intelligence', 'Deal risk detection'],
+      subtitle: 'Context & Generation',
+      description: 'Pre-prompted nodes like "Company Summary" and "Pain Point Extractor." BYO LLM keys for OpenAI/Anthropic. Dynamic fallback prompts.',
+      features: ['Pre-prompted AI nodes', 'BYO LLM keys (OpenAI, Claude)', 'Dynamic fallback prompts', 'Multi-model routing'],
       color: 'from-violet-500 to-purple-400',
       bgColor: 'bg-violet-500/10',
       borderColor: 'border-violet-500/20'
@@ -173,19 +172,19 @@ function Pillars() {
     {
       icon: Workflow,
       title: 'Orchestration',
-      subtitle: 'Visual Workflow Builder',
-      description: 'Drag-and-drop workflow automation with conditional logic, time delays, and CRM-native routing.',
-      features: ['Visual flow builder', 'Conditional branching', 'SLA-based routing', 'Territory management'],
+      subtitle: 'Visual Canvas (React Flow)',
+      description: 'Drag-and-drop node graph with IF/THEN branches, filters, splits, and delays. 10 out-of-the-box revenue plays ready to launch.',
+      features: ['React Flow visual canvas', 'IF/THEN + Filter + Split nodes', '10 revenue play templates', 'A/B testing path branches'],
       color: 'from-emerald-500 to-teal-400',
       bgColor: 'bg-emerald-500/10',
       borderColor: 'border-emerald-500/20'
     },
     {
       icon: Zap,
-      title: 'Execution',
-      subtitle: 'Multi-Channel Activation',
-      description: 'Activate across every channel from a single workflow. Email, LinkedIn, SMS, ads — all orchestrated.',
-      features: ['Email sequences', 'LinkedIn automation', 'SMS & WhatsApp', 'Ad retargeting sync'],
+      title: 'Execution & Sync',
+      subtitle: 'Safe Delivery Layer',
+      description: 'Smartlead/Instantly webhook push for warmed-up outreach. HubSpot/Pipedrive sync. Slack alerts. Full execution analytics & cost tracking.',
+      features: ['Smartlead/Instantly push', 'HubSpot & Pipedrive sync', 'Slack/Discord alerts', 'Run logs & API cost counters'],
       color: 'from-orange-500 to-amber-400',
       bgColor: 'bg-orange-500/10',
       borderColor: 'border-orange-500/20'
@@ -234,6 +233,214 @@ function Pillars() {
                   </div>
                 ))}
               </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CanvasPreview() {
+  return (
+    <section className="relative py-24 bg-slate-950 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <span className="text-sm font-medium text-violet-400 uppercase tracking-wider">The De-Risked Canvas</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">See It In Action</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            A real workflow: LinkedIn job change signal → enrich → AI-personalize → send via Smartlead → log to HubSpot.
+          </p>
+        </motion.div>
+
+        {/* Canvas Mock */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-sm overflow-hidden shadow-2xl shadow-violet-500/5"
+        >
+          {/* Canvas toolbar */}
+          <div className="flex items-center justify-between px-6 py-3 border-b border-white/5 bg-slate-900">
+            <div className="flex items-center gap-3">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                <div className="w-3 h-3 rounded-full bg-green-500/60" />
+              </div>
+              <span className="text-sm text-slate-400 font-mono">The Job Change Pounce — v2.3</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-300 rounded-full">● Live</span>
+              <span className="text-xs text-slate-500">1,247 runs this week</span>
+            </div>
+          </div>
+
+          {/* Canvas area */}
+          <div className="relative p-8 min-h-[420px] bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px]">
+            {/* SVG connections */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+              <defs>
+                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.6" />
+                </linearGradient>
+              </defs>
+              {/* Trigger → Enrich */}
+              <path d="M 180 80 C 240 80, 240 80, 300 80" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+              {/* Enrich → AI */}
+              <path d="M 460 80 C 520 80, 520 80, 580 80" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+              {/* AI → IF/THEN */}
+              <path d="M 740 80 C 800 80, 800 80, 860 80" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+              {/* IF/THEN → Smartlead (top branch) */}
+              <path d="M 940 60 C 1000 60, 1000 60, 1060 60" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+              {/* IF/THEN → Slack (bottom branch) */}
+              <path d="M 940 120 C 1000 120, 1000 200, 1060 200" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+              {/* Smartlead → HubSpot */}
+              <path d="M 1220 60 C 1280 60, 1280 60, 1340 60" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+            </svg>
+
+            {/* Nodes */}
+            <div className="relative z-10 flex flex-wrap gap-6 items-start">
+              {/* Trigger node */}
+              <div className="flex flex-col items-center">
+                <div className="px-4 py-3 rounded-xl bg-blue-500/10 border border-blue-500/30 min-w-[140px]">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-6 h-6 rounded bg-blue-500/30 flex items-center justify-center">
+                      <Globe className="w-3.5 h-3.5 text-blue-300" />
+                    </div>
+                    <span className="text-xs text-blue-300 font-medium">TRIGGER</span>
+                  </div>
+                  <p className="text-sm text-white font-medium">LinkedIn Signal</p>
+                  <p className="text-xs text-slate-400 mt-1">Job change detected</p>
+                </div>
+              </div>
+
+              {/* Enrich node */}
+              <div className="flex flex-col items-center">
+                <div className="px-4 py-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 min-w-[140px]">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-6 h-6 rounded bg-cyan-500/30 flex items-center justify-center">
+                      <Database className="w-3.5 h-3.5 text-cyan-300" />
+                    </div>
+                    <span className="text-xs text-cyan-300 font-medium">ENRICH</span>
+                  </div>
+                  <p className="text-sm text-white font-medium">Apollo → Clearbit</p>
+                  <p className="text-xs text-slate-400 mt-1">Waterfall fallback</p>
+                </div>
+              </div>
+
+              {/* AI node */}
+              <div className="flex flex-col items-center">
+                <div className="px-4 py-3 rounded-xl bg-violet-500/10 border border-violet-500/30 min-w-[140px]">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-6 h-6 rounded bg-violet-500/30 flex items-center justify-center">
+                      <Brain className="w-3.5 h-3.5 text-violet-300" />
+                    </div>
+                    <span className="text-xs text-violet-300 font-medium">AI NODE</span>
+                  </div>
+                  <p className="text-sm text-white font-medium">Pain Point Extract</p>
+                  <p className="text-xs text-slate-400 mt-1">BYO OpenAI key</p>
+                </div>
+              </div>
+
+              {/* IF/THEN node */}
+              <div className="flex flex-col items-center">
+                <div className="px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/30 min-w-[140px]">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-6 h-6 rounded bg-amber-500/30 flex items-center justify-center">
+                      <Workflow className="w-3.5 h-3.5 text-amber-300" />
+                    </div>
+                    <span className="text-xs text-amber-300 font-medium">CONDITION</span>
+                  </div>
+                  <p className="text-sm text-white font-medium">ICP Score ≥ B</p>
+                  <p className="text-xs text-slate-400 mt-1">Split: Yes / No</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Second row */}
+            <div className="relative z-10 flex flex-wrap gap-6 items-start mt-16 ml-[880px]">
+              {/* Smartlead */}
+              <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 min-w-[140px]">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded bg-emerald-500/30 flex items-center justify-center">
+                    <Mail className="w-3.5 h-3.5 text-emerald-300" />
+                  </div>
+                  <span className="text-xs text-emerald-300 font-medium">EXECUTE</span>
+                </div>
+                <p className="text-sm text-white font-medium">Smartlead Push</p>
+                <p className="text-xs text-slate-400 mt-1">Warmed inbox</p>
+              </div>
+
+              {/* HubSpot */}
+              <div className="px-4 py-3 rounded-xl bg-orange-500/10 border border-orange-500/30 min-w-[140px]">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded bg-orange-500/30 flex items-center justify-center">
+                    <Layers className="w-3.5 h-3.5 text-orange-300" />
+                  </div>
+                  <span className="text-xs text-orange-300 font-medium">SYNC</span>
+                </div>
+                <p className="text-sm text-white font-medium">HubSpot Log</p>
+                <p className="text-xs text-slate-400 mt-1">Create activity</p>
+              </div>
+            </div>
+
+            {/* Slack alert (bottom branch) */}
+            <div className="relative z-10 mt-8 ml-[880px]">
+              <div className="px-4 py-3 rounded-xl bg-pink-500/10 border border-pink-500/30 min-w-[140px] inline-block">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded bg-pink-500/30 flex items-center justify-center">
+                    <MessageSquare className="w-3.5 h-3.5 text-pink-300" />
+                  </div>
+                  <span className="text-xs text-pink-300 font-medium">ALERT</span>
+                </div>
+                <p className="text-sm text-white font-medium">Slack #hot-leads</p>
+                <p className="text-xs text-slate-400 mt-1">If score = A</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom stats bar */}
+          <div className="grid grid-cols-4 border-t border-white/5 bg-slate-900/50">
+            {[
+              { label: 'Runs (7d)', value: '1,247', color: 'text-emerald-400' },
+              { label: 'API Cost', value: '$12.40', color: 'text-cyan-400' },
+              { label: 'Success Rate', value: '98.2%', color: 'text-violet-400' },
+              { label: 'Avg. Duration', value: '3.2s', color: 'text-amber-400' }
+            ].map((stat) => (
+              <div key={stat.label} className="p-4 border-r border-white/5 last:border-r-0">
+                <p className="text-xs text-slate-500">{stat.label}</p>
+                <p className={`text-lg font-bold ${stat.color}`}>{stat.value}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Template callouts */}
+        <div className="mt-12 grid md:grid-cols-4 gap-4">
+          {[
+            { name: 'The Job Change Pounce', icon: '🎯', desc: 'Detect new VPs → enrich → personalized congrats email' },
+            { name: 'The G2 Review Reactor', icon: '⭐', desc: 'Monitor competitor reviews → route detractors to win-back' },
+            { name: 'The Funding Follower', icon: '💰', desc: 'Crunchbase signal → enrich team → multi-touch sequence' },
+            { name: 'The Website Ghost', icon: '👻', desc: 'Clearbit reverse lookup → identify visitors → re-engage' }
+          ].map((t, i) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              className="p-4 rounded-xl bg-slate-800/30 border border-white/5 hover:border-violet-500/20 transition-all cursor-pointer"
+            >
+              <div className="text-2xl mb-2">{t.icon}</div>
+              <p className="text-sm font-bold text-white">{t.name}</p>
+              <p className="text-xs text-slate-400 mt-1">{t.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -325,21 +532,21 @@ function ProblemsSection() {
   const problems = [
     {
       number: '01',
-      title: 'Data Fragmentation',
-      legacy: 'Legacy CRMs silo data. Enrichment tools don\'t sync. Intent signals live in another tab.',
-      solution: 'RevFlow creates a unified data layer — every signal, every record, every touchpoint in one real-time graph.'
+      title: 'Enrichment Cost Spiral',
+      legacy: 'Pay per-lookup pricing that scales against you. 10K enrichments = $500/mo in API costs eating your margins.',
+      solution: 'BYO API keys + enrichment waterfall routing. Use your own Apollo/Clearbit credentials. Fallback cascades ensure no lead falls through.'
     },
     {
       number: '02',
-      title: 'Execution Latency',
-      legacy: 'Building a multi-channel campaign takes 2 weeks, 3 tools, and a prayer that nothing breaks.',
-      solution: 'Design once, execute everywhere. Visual workflows that deploy across email, LinkedIn, SMS, and ads in minutes.'
+      title: 'Execution Complexity',
+      legacy: 'Building a multi-channel campaign takes 2 weeks, 3 tools, and a GTM engineer who can write Zapier formulas.',
+      solution: 'Visual canvas with pre-built templates. "The Job Change Pounce" goes from idea to live in 7 minutes. No code required.'
     },
     {
       number: '03',
-      title: 'AI Without Context',
-      legacy: 'AI tools generate generic output because they lack your data, your ICP, and your winning patterns.',
-      solution: 'Our AI agents learn from your best performers, your CRM data, and your win/loss patterns to generate hyper-relevant outreach.'
+      title: 'AI Without Guardrails',
+      legacy: 'Raw GPT access dumps prompt engineering on users. Rate limits break workflows. No fallback means dead ends.',
+      solution: 'Pre-prompted nodes + BYO LLM keys + dynamic fallback prompts. Multi-model routing (Claude for reasoning, GPT-4o-mini for speed).'
     }
   ];
 
@@ -386,6 +593,127 @@ function ProblemsSection() {
                 </div>
               </div>
             </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TechStack() {
+  const stack = [
+    { category: 'Frontend', items: ['React + TypeScript', 'React Flow (canvas)', 'Tailwind CSS', 'Framer Motion'] },
+    { category: 'Backend', items: ['Node.js / Fastify', 'Temporal (workflows)', 'BullMQ (job queues)', 'Webhook relay layer'] },
+    { category: 'Database', items: ['PostgreSQL (primary)', 'Redis (caching/queues)', 'S3 (file storage)', 'ClickHouse (analytics)'] },
+    { category: 'Infrastructure', items: ['AWS (ECS + RDS)', 'CloudFront CDN', 'Vercel (frontend)', 'Sentry (monitoring)'] }
+  ];
+
+  const integrations = [
+    { name: 'Apollo', type: 'Enrichment', status: 'MVP' },
+    { name: 'Clearbit', type: 'Enrichment', status: 'MVP' },
+    { name: 'OpenAI', type: 'AI', status: 'MVP' },
+    { name: 'Anthropic', type: 'AI', status: 'MVP' },
+    { name: 'Smartlead', type: 'Email', status: 'MVP' },
+    { name: 'Instantly', type: 'Email', status: 'MVP' },
+    { name: 'HubSpot', type: 'CRM', status: 'MVP' },
+    { name: 'Pipedrive', type: 'CRM', status: 'MVP' },
+    { name: 'Slack', type: 'Alerts', status: 'MVP' },
+    { name: 'Salesforce', type: 'CRM', status: 'Q2' },
+    { name: 'ScrapingBee', type: 'Scraping', status: 'MVP' },
+    { name: 'Crunchbase', type: 'Signals', status: 'Q2' }
+  ];
+
+  return (
+    <section className="relative py-32 bg-slate-950">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-cyan-400 uppercase tracking-wider">Phase 3: Technical Architecture</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Built on Modern Infrastructure</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Enterprise-grade stack with SOC2 path, GDPR compliance, and 99.9% uptime SLA.
+          </p>
+        </motion.div>
+
+        {/* Tech stack grid */}
+        <div className="grid md:grid-cols-4 gap-4 mb-12">
+          {stack.map((cat, i) => (
+            <motion.div
+              key={cat.category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 rounded-xl bg-slate-800/30 border border-white/5"
+            >
+              <h4 className="text-sm font-bold text-violet-300 uppercase tracking-wider mb-4">{cat.category}</h4>
+              <div className="space-y-2">
+                {cat.items.map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-sm text-slate-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Integrations table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl border border-white/5 bg-slate-900/50 overflow-hidden"
+        >
+          <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
+            <h4 className="text-lg font-bold text-white">Integration Ecosystem</h4>
+            <div className="flex items-center gap-4 text-xs">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                MVP (Day 1)
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                Q2 Roadmap
+              </span>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+            {integrations.map((int, i) => (
+              <div key={int.name} className={`p-4 border-b border-r border-white/5 ${i % 6 === 5 ? 'border-r-0' : ''}`}>
+                <p className="text-sm font-medium text-white">{int.name}</p>
+                <p className="text-xs text-slate-500">{int.type}</p>
+                <span className={`inline-block mt-2 px-2 py-0.5 text-xs rounded-full ${
+                  int.status === 'MVP' 
+                    ? 'bg-emerald-500/10 text-emerald-300' 
+                    : 'bg-amber-500/10 text-amber-300'
+                }`}>
+                  {int.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Compliance badges */}
+        <div className="mt-8 flex items-center justify-center gap-6 flex-wrap">
+          {[
+            { label: 'SOC2 Type II', icon: Shield },
+            { label: 'GDPR Compliant', icon: Globe },
+            { label: '99.9% Uptime SLA', icon: BarChart3 },
+            { label: 'End-to-End Encryption', icon: Layers }
+          ].map((badge) => (
+            <div key={badge.label} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+              <badge.icon className="w-4 h-4 text-emerald-400" />
+              <span className="text-sm text-slate-300">{badge.label}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -691,8 +1019,10 @@ export default function App() {
       <Navbar />
       <Hero />
       <Pillars />
+      <CanvasPreview />
       <ICPSection />
       <ProblemsSection />
+      <TechStack />
       <PricingSection />
       <LaunchSection />
       <WaitlistCTA />
