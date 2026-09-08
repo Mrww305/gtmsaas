@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RevFlow Signal Harvester</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 360px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .status-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .status-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .status-label {
+      font-size: 12px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.active {
+      background: #10b981;
+    }
+
+    .status-dot.inactive {
+      background: #ef4444;
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-input::placeholder {
+      color: #475569;
+    }
+
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      color: #e2e8f0;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .toggle.active {
+      background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+    }
+
+    .toggle-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .toggle.active .toggle-knob {
+      left: 22px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .footer-link {
+      font-size: 12px;
+      color: #8b5cf6;
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .message.success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: #10b981;
+    }
+
+    .message.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">RevFlow</div>
+    </div>
+    <div class="subtitle">LinkedIn Signal Harvester</div>
+  </div>
+
+  <div class="content">
+    <div id="message" class="message hidden"></div>
+
+    <!-- Status Card -->
+    <div class="status-card">
+      <div class="status-header">
+        <span class="status-label">Status</span>
+        <div class="status-indicator">
+          <div class="status-dot" id="statusDot"></div>
+          <span id="statusText">Loading...</span>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-value" id="signalsSent">0</div>
+          <div class="stat-label">Signals Sent</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="signalsQueued">0</div>
+          <div class="stat-label">In Queue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enable Toggle -->
+    <div class="toggle-group">
+      <span class="toggle-label">Enable Signal Capture</span>
+      <div class="toggle" id="enableToggle">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+
+    <!-- Settings Form -->
+    <div id="settingsForm">
+      <div class="form-group">
+        <label class="form-label">Workspace ID</label>
+        <input type="text" id="workspaceId" class="form-input" placeholder="Enter your workspace ID">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">API Key</label>
+        <input type="password" id="apiKey" class="form-input" placeholder="Enter your API key">
+      </div>
+
+      <button class="btn" id="saveBtn">Save Settings</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://revflow.app" target="_blank" class="footer-link">revflow.app</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
