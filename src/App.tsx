@@ -30,6 +30,7 @@ function Navbar() {
           <a href="#icp" className="text-sm text-slate-300 hover:text-white transition">Who It's For</a>
           <a href="#pricing" className="text-sm text-slate-300 hover:text-white transition">Pricing</a>
           <a href="#why" className="text-sm text-slate-300 hover:text-white transition">Why RevFlow</a>
+          <a href="#about" className="text-sm text-slate-300 hover:text-white transition">About</a>
           <a href="#waitlist" className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition inline-block">
             Join Waitlist
           </a>
@@ -50,6 +51,7 @@ function Navbar() {
             <a href="#icp" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Who It's For</a>
             <a href="#pricing" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Pricing</a>
             <a href="#why" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Why RevFlow</a>
+            <a href="#about" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">About</a>
             <a href="#waitlist" onClick={() => setMobileOpen(false)} className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg text-center">
               Join Waitlist
             </a>
@@ -1270,23 +1272,172 @@ function WaitlistCTA() {
   );
 }
 
+function AboutSection() {
+  return (
+    <section id="about" className="relative py-24 bg-slate-900">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <span className="text-sm font-medium text-violet-400 uppercase tracking-wider">About</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Built in Partnership</h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="p-10 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-white/5"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            {/* Megnito Logo/Brand */}
+            <div className="flex-shrink-0">
+              <a
+                href="https://megnito.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center gap-3"
+              >
+                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-violet-500/20 group-hover:shadow-violet-500/40 transition-all">
+                  <span className="text-3xl font-black text-white">M</span>
+                </div>
+                <span className="text-lg font-bold text-white group-hover:text-violet-300 transition">Megnito.com</span>
+              </a>
+            </div>
+
+            {/* Divider */}
+            <div className="hidden md:block w-px h-32 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+            <div className="md:hidden w-32 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            {/* Description */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 mb-4">
+                <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
+                <span className="text-xs font-medium text-violet-300">Co-Founder</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">
+                RevFlow is proudly co-founded by{' '}
+                <a
+                  href="https://megnito.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent hover:from-violet-300 hover:to-cyan-300 transition"
+                >
+                  Megnito.com
+                </a>
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                Megnito.com brings deep expertise in building scalable SaaS products and go-to-market solutions.
+                Together, we're redefining how revenue teams orchestrate data, AI, and execution — from a single visual canvas.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-white/5">
+                <a
+                  href="https://megnito.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition"
+                >
+                  <Globe className="w-4 h-4 text-violet-400" />
+                  <span>megnito.com</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+                <a
+                  href="mailto:CEO@MEGNITOO.COM"
+                  className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition"
+                >
+                  <Mail className="w-4 h-4 text-cyan-400" />
+                  <span>CEO@MEGNITOO.COM</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Inquiries CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-8 text-center"
+        >
+          <p className="text-sm text-slate-500 mb-3">For partnerships, press, or enterprise inquiries:</p>
+          <a
+            href="mailto:CEO@MEGNITOO.COM"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 hover:border-violet-500/30 hover:bg-white/10 transition text-sm text-white"
+          >
+            <Mail className="w-4 h-4 text-violet-400" />
+            CEO@MEGNITOO.COM
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer className="bg-slate-950 border-t border-white/5 py-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-white" />
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-lg font-bold text-white">RevFlow</span>
             </div>
-            <span className="text-lg font-bold text-white">RevFlow</span>
+            <p className="text-sm text-slate-400 mb-4">
+              The visual canvas for revenue operations. Built in partnership with{' '}
+              <a href="https://megnito.com" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition">
+                Megnito.com
+              </a>
+            </p>
           </div>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-slate-400 hover:text-white transition"><Mail className="w-5 h-5" /></a>
-            <a href="#" className="text-slate-400 hover:text-white transition"><Linkedin className="w-5 h-5" /></a>
-            <a href="#" className="text-slate-400 hover:text-white transition"><MessageSquare className="w-5 h-5" /></a>
+
+          {/* Links */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-4">Quick Links</h4>
+            <div className="flex flex-col gap-2">
+              <a href="#pillars" className="text-sm text-slate-400 hover:text-white transition">Platform</a>
+              <a href="#icp" className="text-sm text-slate-400 hover:text-white transition">Who It's For</a>
+              <a href="#pricing" className="text-sm text-slate-400 hover:text-white transition">Pricing</a>
+              <a href="#about" className="text-sm text-slate-400 hover:text-white transition">About</a>
+            </div>
           </div>
-          <p className="text-sm text-slate-500">© 2026 RevFlow. Building the future of GTM.</p>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-4">Contact</h4>
+            <div className="flex flex-col gap-2">
+              <a href="mailto:CEO@MEGNITOO.COM" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+                <Mail className="w-4 h-4" />
+                CEO@MEGNITOO.COM
+              </a>
+              <a href="https://megnito.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+                <Globe className="w-4 h-4" />
+                megnito.com
+              </a>
+              <div className="flex items-center gap-4 mt-2">
+                <a href="#" className="text-slate-400 hover:text-white transition"><Linkedin className="w-5 h-5" /></a>
+                <a href="#" className="text-slate-400 hover:text-white transition"><MessageSquare className="w-5 h-5" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-slate-500">© 2026 RevFlow. A Megnito.com venture. Building the future of GTM.</p>
+          <div className="flex items-center gap-2 text-xs text-slate-500">
+            <Shield className="w-3 h-3" />
+            <span>SOC2 Compliant</span>
+            <span className="mx-2">•</span>
+            <Globe className="w-3 h-3" />
+            <span>GDPR Ready</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -1308,6 +1459,7 @@ export default function App() {
       <PricingSection />
       <WhyRevFlow />
       <WaitlistCTA />
+      <AboutSection />
       <Footer />
     </div>
   );
