@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Database, Brain, Workflow, Zap, ArrowRight, Check, ChevronDown,
   Sparkles, Shield, Users, BarChart3, Globe, Layers, Play,
-  Star, Menu, X, Mail, Linkedin, MessageSquare, Target
+  Menu, X, Mail, Linkedin, MessageSquare, Target
 } from 'lucide-react';
 
 function Navbar() {
@@ -29,7 +29,7 @@ function Navbar() {
           <a href="#pillars" className="text-sm text-slate-300 hover:text-white transition">Platform</a>
           <a href="#icp" className="text-sm text-slate-300 hover:text-white transition">Who It's For</a>
           <a href="#pricing" className="text-sm text-slate-300 hover:text-white transition">Pricing</a>
-          <a href="#launch" className="text-sm text-slate-300 hover:text-white transition">Launch</a>
+          <a href="#why" className="text-sm text-slate-300 hover:text-white transition">Why RevFlow</a>
           <button className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition">
             Join Waitlist
           </button>
@@ -49,7 +49,7 @@ function Navbar() {
             <a href="#pillars" className="text-sm text-slate-300">Platform</a>
             <a href="#icp" className="text-sm text-slate-300">Who It's For</a>
             <a href="#pricing" className="text-sm text-slate-300">Pricing</a>
-            <a href="#launch" className="text-sm text-slate-300">Launch</a>
+            <a href="#why" className="text-sm text-slate-300">Why RevFlow</a>
             <button className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg">
               Join Waitlist
             </button>
@@ -80,7 +80,7 @@ function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300 mb-8">
             <Sparkles className="w-3.5 h-3.5 text-violet-400" />
-            <span>Phase 1: Product Strategy & ICP Defined</span>
+            <span>Now in Private Beta — Limited Spots Available</span>
           </div>
         </motion.div>
 
@@ -202,7 +202,7 @@ function Pillars() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-violet-400 uppercase tracking-wider">Phase 2: Core Architecture</span>
+          <span className="text-sm font-medium text-violet-400 uppercase tracking-wider">The Platform</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">The 4 Pillars of Modern GTM</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Every feature is built around four interconnected building blocks that work together as a unified system.
@@ -559,7 +559,7 @@ function ICPSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-cyan-400 uppercase tracking-wider">Phase 1: ICP & Positioning</span>
+          <span className="text-sm font-medium text-cyan-400 uppercase tracking-wider">Who It's For</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Built for the Modern Revenue Team</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Three distinct buyer personas who feel the pain of fragmented GTM stacks every single day.
@@ -712,7 +712,7 @@ function TechStack() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-cyan-400 uppercase tracking-wider">Phase 3: Technical Architecture</span>
+          <span className="text-sm font-medium text-cyan-400 uppercase tracking-wider">Enterprise-Grade Infrastructure</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Built on Modern Infrastructure</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Enterprise-grade stack with SOC2 path, GDPR compliance, and 99.9% uptime SLA.
@@ -1029,7 +1029,7 @@ function PricingSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-amber-400 uppercase tracking-wider">Phase 4: Pricing Strategy</span>
+          <span className="text-sm font-medium text-amber-400 uppercase tracking-wider">Pricing</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Transparent, Usage-Based Pricing</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Real-time metering dashboard. Hard caps at tier limits. No surprise bills. Pay for outcomes, not seats.
@@ -1084,37 +1084,46 @@ function PricingSection() {
   );
 }
 
-function LaunchSection() {
-  const timeline = [
-    { week: 'Week 1-2', title: 'Private Beta', description: 'Invite 50 design partners from RevOps community. Iterate on core workflows.' },
-    { week: 'Week 3-6', title: 'Content Blitz', description: 'Launch "GTM Stack Audit" tool. Publish 10 teardowns of broken revenue processes.' },
-    { week: 'Week 7-10', title: 'Public Beta', description: 'Open waitlist. Partner with 3 RevOps podcasts. Launch referral program.' },
-    { week: 'Week 11-12', title: 'GA Launch', description: 'Product Hunt launch. Press coverage. First 100 paying customers target.' }
-  ];
-
-  const campaigns = [
+function WhyRevFlow() {
+  const comparisons = [
     {
-      icon: BarChart3,
-      title: 'GTM Stack Audit',
-      description: 'Free interactive tool that scores your current stack and shows how much you\'re overspending on disconnected tools.',
-      metric: 'Target: 2,000 audits in 30 days'
+      category: 'vs. Clay',
+      icon: '🧩',
+      points: [
+        { clay: 'Spreadsheet-first — requires data engineering skills', revflow: 'Visual canvas — anyone can build workflows' },
+        { clay: 'No native execution — export to send', revflow: 'Execute directly via Smartlead/Instantly' },
+        { clay: 'Complex prompt engineering for AI', revflow: 'Pre-prompted nodes — zero prompt knowledge needed' }
+      ]
     },
     {
-      icon: Globe,
-      title: '"Broken RevOps" Series',
-      description: 'Video teardowns of real GTM failures — leaked workflows, bad routing, AI gone wrong. Viral potential + thought leadership.',
-      metric: 'Target: 50K views across platforms'
+      category: 'vs. Zapier / Make',
+      icon: '⚡',
+      points: [
+        { clay: 'Generic automation — not built for revenue', revflow: 'Purpose-built for GTM workflows' },
+        { clay: 'No enrichment or AI built-in', revflow: 'Native enrichment waterfall + AI agents' },
+        { clay: 'Breaks at scale with complex logic', revflow: 'BullMQ queues handle 100K+ runs/day' }
+      ]
     },
     {
-      icon: Star,
-      title: 'RevOps Leaderboard',
-      description: 'Public ranking of companies by GTM maturity. Creates FOMO, drives shares, and positions RevFlow as the standard.',
-      metric: 'Target: 500 companies listed'
+      category: 'vs. Running 12 Separate Tools',
+      icon: '🔧',
+      points: [
+        { clay: '$2,000+/mo across enrichment, AI, email, CRM', revflow: '$499/mo — one platform, one bill' },
+        { clay: 'Data silos, manual CSV exports, sync breaks', revflow: 'Unified data layer with bi-directional sync' },
+        { clay: 'Weeks to build a multi-channel campaign', revflow: '4 minutes with pre-built templates' }
+      ]
     }
   ];
 
+  const stats = [
+    { value: '4 min', label: 'Time to first lead', sublabel: 'From signup to execution' },
+    { value: '73%', label: 'Less tool spend', sublabel: 'vs. average GTM stack' },
+    { value: '12→1', label: 'Tools consolidated', sublabel: 'Single source of truth' },
+    { value: '98.2%', label: 'Workflow success rate', sublabel: 'With auto-recovery' }
+  ];
+
   return (
-    <section id="launch" className="relative py-32 bg-slate-950">
+    <section id="why" className="relative py-32 bg-slate-950">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -1124,59 +1133,57 @@ function LaunchSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-rose-400 uppercase tracking-wider">Phase 5: GTM Strategy</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">90-Day Launch Plan</h2>
+          <span className="text-sm font-medium text-rose-400 uppercase tracking-wider">Why RevFlow</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">Stop Juggling. Start Orchestrating.</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            From private beta to general availability — a phased approach to building momentum.
+            See how RevFlow compares to the tools you're using today — and the fragmented stacks you're paying for.
           </p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="grid md:grid-cols-4 gap-4 mb-20">
-          {timeline.map((item, i) => (
-            <motion.div
-              key={item.week}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="relative p-6 rounded-xl bg-slate-800/30 border border-white/5"
-            >
-              <span className="text-xs font-medium text-violet-400">{item.week}</span>
-              <h4 className="text-lg font-bold text-white mt-2 mb-2">{item.title}</h4>
-              <p className="text-sm text-slate-400">{item.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Campaigns */}
+        {/* Stats bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
         >
-          <h3 className="text-2xl font-bold text-white mb-2">3 High-ROI Launch Campaigns</h3>
-          <p className="text-slate-400">Creative plays to build waitlist momentum and establish category authority.</p>
+          {stats.map((stat) => (
+            <div key={stat.label} className="p-6 rounded-xl bg-slate-800/30 border border-white/5 text-center">
+              <p className="text-3xl font-bold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">{stat.value}</p>
+              <p className="text-sm font-medium text-white mt-2">{stat.label}</p>
+              <p className="text-xs text-slate-500 mt-1">{stat.sublabel}</p>
+            </div>
+          ))}
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {campaigns.map((c, i) => (
+        {/* Comparisons */}
+        <div className="space-y-6">
+          {comparisons.map((comp, i) => (
             <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={comp.category}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-2xl bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-white/5 hover:border-violet-500/20 transition-all"
+              className="p-8 rounded-2xl bg-slate-800/30 border border-white/5"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-white/10 flex items-center justify-center mb-5">
-                <c.icon className="w-6 h-6 text-cyan-300" />
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-2xl">{comp.icon}</span>
+                <h3 className="text-xl font-bold text-white">{comp.category}</h3>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">{c.title}</h4>
-              <p className="text-sm text-slate-400 mb-4 leading-relaxed">{c.description}</p>
-              <div className="pt-4 border-t border-white/5">
-                <p className="text-xs font-medium text-emerald-400">{c.metric}</p>
+              <div className="space-y-3">
+                {comp.points.map((point, j) => (
+                  <div key={j} className="grid md:grid-cols-2 gap-3">
+                    <div className="flex items-start gap-3 p-3 rounded-lg bg-red-500/5 border border-red-500/10">
+                      <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                      <span className="text-sm text-slate-300">{point.clay}</span>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="text-sm text-slate-300">{point.revflow}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           ))}
@@ -1294,7 +1301,7 @@ export default function App() {
       <ProductionReadiness />
       <ActivationFlow />
       <PricingSection />
-      <LaunchSection />
+      <WhyRevFlow />
       <WaitlistCTA />
       <Footer />
     </div>
