@@ -78,6 +78,29 @@ async function logActivity(db, userId, action, detail) {
   await db.query("INSERT INTO activity_log (user_id, action, detail) VALUES (?, ?, ?)", [userId, action, detail || null]);
 }
 
+// Demo accounts expire after DEMO_DAYS. Purge them with their sessions, quota and activity rows.
+async function purgeExpiredDemoData() {
+  try {
+    const db = getPool();
+    const [expired] = await db.query(
+      "SELECT id, email FROM users WHERE created_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL ? DAY)",
+      [DEMO_DAYS]
+    );
+    for (const user of expired) {
+      await db.query("DELETE FROM sessions WHERE user_id = ?", [user.id]);
+      await db.query("DELETE FROM demo_usage WHERE user_id = ?", [user.id]);
+      await db.query("DELETE FROM activity_log WHERE user_id = ?", [user.id]);
+      await db.query("DELETE FROM users WHERE id = ?", [user.id]);
+    }
+    const [stale] = await db.query("DELETE FROM sessions WHERE expires_at < UTC_TIMESTAMP()");
+    if (expired.length || stale.affectedRows) {
+      console.log(`[retention] purged ${expired.length} demo account(s), ${stale.affectedRows} stale session(s)`);
+    }
+  } catch (error) {
+    console.error("[retention] failed:", error.message);
+  }
+}
+
 // --- simple in-memory rate limit for public endpoints ---
 const buckets = new Map();
 function rateLimit(key, max, windowMs) {
@@ -586,6 +609,8 @@ async function start() {
   } catch (error) {
     console.error("[db] init failed:", error.message);
   }
+  await purgeExpiredDemoData();
+  setInterval(purgeExpiredDemoData, 6 * 3600 * 1000).unref();
   app.listen(PORT, () => {
     console.log(`[server] listening on :${PORT}`);
     console.log(`[mail] ${JSON.stringify(mailStatus())}`);
