@@ -32,6 +32,7 @@ function Navbar() {
           <a href="#why" className="text-sm text-slate-300 hover:text-white transition">Why RevFlow</a>
           <a href="#features" className="text-sm text-slate-300 hover:text-white transition">Features</a>
           <a href="#about" className="text-sm text-slate-300 hover:text-white transition">About</a>
+          <a href="/demo" className="text-sm font-semibold text-violet-300 hover:text-white transition">Live Demo</a>
           <a href="#waitlist" className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition inline-block">
             Join Waitlist
           </a>
@@ -116,11 +117,11 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a href="#waitlist" className="group px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition flex items-center gap-2">
+          <a href="/demo/signup" className="group px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition flex items-center gap-2">
             Start Building Free
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="#pillars" className="px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center gap-2">
+          <a href="/demo" className="px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center gap-2">
             <Play className="w-4 h-4" />
             See It In Action
           </a>
@@ -1205,6 +1206,27 @@ function WhyRevFlow() {
 function WaitlistCTA() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  async function joinWaitlist() {
+    if (!email) return;
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'waitlist', message: 'Requested early access from the marketing site.' }),
+      });
+      if (!res.ok) throw new Error('Could not join right now');
+      setSubmitted(true);
+    } catch (err) {
+      setError('Could not send your request. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <section id="waitlist" className="relative py-32 bg-slate-950 overflow-hidden">
@@ -1224,6 +1246,7 @@ function WaitlistCTA() {
           </p>
 
           {!submitted ? (
+            <>
             <div className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
               <div className="relative flex-1 w-full">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -1236,12 +1259,19 @@ function WaitlistCTA() {
                 />
               </div>
               <button
-                onClick={() => { if (email) setSubmitted(true); }}
-                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition whitespace-nowrap"
+                onClick={joinWaitlist}
+                disabled={loading}
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition whitespace-nowrap disabled:opacity-60"
               >
-                Join Waitlist
+                {loading ? 'Sending…' : 'Join Waitlist'}
               </button>
             </div>
+            {error ? <p className="mt-3 text-sm text-rose-400">{error}</p> : null}
+            <p className="mt-4 text-xs text-slate-500">
+              Prefer to try it now?{' '}
+              <a href="/demo" className="font-semibold text-violet-300 hover:text-white">Open the live JW × Enviro demo →</a>
+            </p>
+            </>
           ) : (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
