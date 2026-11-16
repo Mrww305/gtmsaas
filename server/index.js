@@ -587,13 +587,43 @@ app.get("/api/health", asyncRoute(async (req, res) => {
 
 // ============ STATIC ============
 if (fs.existsSync(DIST)) {
-  app.use(express.static(DIST, { index: false, maxAge: "1h" }));
+  app.use(
+    express.static(DIST, {
+      index: false,
+      maxAge: "1h",
+      setHeaders(res, filePath) {
+        // Prerendered HTML must revalidate so content and meta tags stay fresh.
+        if (filePath.endsWith(".html")) res.setHeader("Cache-Control", "no-cache");
+      },
+    })
+  );
 }
+
+const SPA_SHELL = path.join(DIST, "_spa.html");
+const HOME_INDEX = path.join(DIST, "index.html");
+const NOT_FOUND_INDEX = path.join(DIST, "404.html");
+
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/")) return next();
-  const index = path.join(DIST, "index.html");
-  if (fs.existsSync(index)) return res.sendFile(index);
-  res.status(404).send("Build not found. Run npm run build.");
+
+  if (!fs.existsSync(HOME_INDEX)) {
+    return res.status(404).send("Build not found. Run npm run build.");
+  }
+
+  // The demo is a client-rendered SPA and needs the pristine shell, not a prerendered page.
+  if (req.path === "/demo" || req.path.startsWith("/demo/")) {
+    return res.sendFile(fs.existsSync(SPA_SHELL) ? SPA_SHELL : HOME_INDEX);
+  }
+
+  const clean = decodeURIComponent(req.path).replace(/^\/+|\/+$/g, "");
+  if (!clean) return res.sendFile(HOME_INDEX);
+  const candidate = path.join(DIST, clean, "index.html");
+  if (candidate.startsWith(DIST + path.sep) && fs.existsSync(candidate)) {
+    return res.sendFile(candidate);
+  }
+
+  if (fs.existsSync(NOT_FOUND_INDEX)) return res.status(404).sendFile(NOT_FOUND_INDEX);
+  res.status(404).sendFile(HOME_INDEX);
 });
 
 app.use((err, req, res, next) => {

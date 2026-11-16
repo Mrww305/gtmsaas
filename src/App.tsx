@@ -6,65 +6,6 @@ import {
   Menu, X, Mail, Linkedin, MessageSquare, Target
 } from 'lucide-react';
 
-function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/90 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center">
-            <Zap className="w-4 h-4 text-white" />
-          </div>
-          <span className="text-xl font-bold text-white">RevFlow</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8">
-          <a href="#pillars" className="text-sm text-slate-300 hover:text-white transition">Platform</a>
-          <a href="#icp" className="text-sm text-slate-300 hover:text-white transition">Who It's For</a>
-          <a href="#pricing" className="text-sm text-slate-300 hover:text-white transition">Pricing</a>
-          <a href="#why" className="text-sm text-slate-300 hover:text-white transition">Why RevFlow</a>
-          <a href="#features" className="text-sm text-slate-300 hover:text-white transition">Features</a>
-          <a href="#about" className="text-sm text-slate-300 hover:text-white transition">About</a>
-          <a href="/demo" className="text-sm font-semibold text-violet-300 hover:text-white transition">Live Demo</a>
-          <a href="#waitlist" className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition inline-block">
-            Join Waitlist
-          </a>
-        </div>
-        <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-950/95 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex flex-col gap-4"
-          >
-            <a href="#pillars" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Platform</a>
-            <a href="#icp" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Who It's For</a>
-            <a href="#pricing" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Pricing</a>
-            <a href="#why" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Why RevFlow</a>
-            <a href="#features" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">Features</a>
-            <a href="#about" onClick={() => setMobileOpen(false)} className="text-sm text-slate-300">About</a>
-            <a href="#waitlist" onClick={() => setMobileOpen(false)} className="px-4 py-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-medium rounded-lg text-center">
-              Join Waitlist
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-}
-
 function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -1507,77 +1448,9 @@ function AboutSection() {
   );
 }
 
-function Footer() {
+export default function HomeSections() {
   return (
-    <footer className="bg-slate-950 border-t border-white/5 py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-lg font-bold text-white">RevFlow</span>
-            </div>
-            <p className="text-sm text-slate-400 mb-4">
-              The visual canvas for revenue operations. Built in partnership with{' '}
-              <a href="https://megnitoo.com" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition">
-                Megnitoo.com
-              </a>
-            </p>
-          </div>
-
-          {/* Links */}
-          <div>
-            <h4 className="text-sm font-bold text-white mb-4">Quick Links</h4>
-            <div className="flex flex-col gap-2">
-              <a href="#pillars" className="text-sm text-slate-400 hover:text-white transition">Platform</a>
-              <a href="#icp" className="text-sm text-slate-400 hover:text-white transition">Who It's For</a>
-              <a href="#pricing" className="text-sm text-slate-400 hover:text-white transition">Pricing</a>
-              <a href="#about" className="text-sm text-slate-400 hover:text-white transition">About</a>
-            </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-sm font-bold text-white mb-4">Contact</h4>
-            <div className="flex flex-col gap-2">
-              <a href="mailto:CEO@MEGNITOO.COM" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
-                <Mail className="w-4 h-4" />
-                CEO@MEGNITOO.COM
-              </a>
-              <a href="https://megnitoo.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
-                <Globe className="w-4 h-4" />
-                megnitoo.com
-              </a>
-              <div className="flex items-center gap-4 mt-2">
-                <a href="#" className="text-slate-400 hover:text-white transition"><Linkedin className="w-5 h-5" /></a>
-                <a href="#" className="text-slate-400 hover:text-white transition"><MessageSquare className="w-5 h-5" /></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500">© 2026 RevFlow. A Megnitoo.com venture. Building the future of GTM.</p>
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <Shield className="w-3 h-3" />
-            <span>SOC2 Compliant</span>
-            <span className="mx-2">•</span>
-            <Globe className="w-3 h-3" />
-            <span>GDPR Ready</span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-export default function App() {
-  return (
-    <div className="bg-slate-950 min-h-screen">
-      <Navbar />
+    <div className="bg-slate-950">
       <Hero />
       <Pillars />
       <CanvasPreview />
@@ -1591,7 +1464,6 @@ export default function App() {
       <AdvancedFeatures />
       <WaitlistCTA />
       <AboutSection />
-      <Footer />
     </div>
   );
 }

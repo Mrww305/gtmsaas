@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RevFlow — GTM & Sales CRM Demo for JW Corporation × Enviro Pakistan</title>
+    <meta name="theme-color" content="#020617" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +15,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-      /* 内联样式确保主题色立即生效，避免闪烁 */
       html,
       body {
         margin: 0;
@@ -30,12 +29,12 @@
       }
       html.dark,
       html.dark body {
-        background-color: #1a1a1a !important;
+        background-color: #020617 !important;
         color: #ffffff;
       }
     </style>
     <script>
-      // 在 React 加载前立即设置主题，避免闪烁
+      // Apply the correct theme before React loads to avoid a flash.
       (function () {
         const isInIframe = window.self !== window.top;
 
@@ -45,8 +44,12 @@
           document.documentElement.setAttribute("data-theme", theme);
         }
 
+        function defaultTheme() {
+          // The demo workspace is light; the marketing site is dark.
+          return window.location.pathname.indexOf("/demo") === 0 ? "light" : "dark";
+        }
+
         if (isInIframe) {
-          // 监听父窗口主动推送的主题消息
           window.addEventListener("message", function (event) {
             if (event.data && typeof event.data.theme === "string") {
               const theme = event.data.theme;
@@ -55,22 +58,20 @@
               }
             }
           });
+          applyThemeToDOM(defaultTheme());
         } else {
-          // 非 iframe 环境，使用默认 light 主题
-          applyThemeToDOM("light");
+          applyThemeToDOM(defaultTheme());
         }
       })();
     </script>
-      <script>
+    <script>
       (function () {
         if (window.self === window.top) return;
         var reported = {};
         window.addEventListener("error", function (event) {
-          // 资源加载失败的 error 事件没有 message，此处仅上报 JS 运行时错误
           if (!event || !event.message) return;
-          var key =
-            event.message + "|" + (event.filename || "") + "|" + (event.lineno || 0);
-          if (reported[key]) return; // 相同错误只上报一次，避免渲染循环刷屏
+          var key = event.message + "|" + (event.filename || "") + "|" + (event.lineno || 0);
+          if (reported[key]) return;
           reported[key] = true;
           try {
             window.parent.postMessage(
@@ -82,104 +83,45 @@
                   lineno: event.lineno || 0,
                   colno: event.colno || 0,
                   stack:
-                    event.error && event.error.stack
-                      ? String(event.error.stack).slice(0, 2000)
-                      : ""
-                }
+                    event.error && event.error.stack ? String(event.error.stack).slice(0, 2000) : "",
+                },
               },
               "*"
             );
           } catch (e) {
-            /* 上报失败不影响页面运行 */
+            /* reporting must never break the page */
           }
         });
       })();
     </script>
-  
-    <meta name="author" content="Sajid Afridi" />
-    <meta name="description" content="Interactive multi-tenant GTM and sales CRM demo for JW Corporation and Enviro Pakistan. Warranty dispatch, dealer credit control, B2B bundling and ERP sync." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="RevFlow — GTM & Sales CRM Demo for JW Corporation × Enviro Pakistan" />
-    <meta property="og:description" content="Switch personas, run four live workflows and explore eight connected entities with realistic Pakistani seed data." />
-    <meta property="og:url" content="https://gtmsaas.sajidafridi.com/demo" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!--SEO_START-->
+    <title>RevFlow — Revenue Operations Platform for Multi-Entity Groups</title>
+    <meta
+      name="description"
+      content="One revenue OS for B2C appliance velocity and B2B conglomerate deals: visual GTM canvas, channel DMS, field service and ERP sync."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://gtmsaas.sajidafridi.com/" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"https://gtmsaas.sajidafridi.com/","name":"RevFlow by Sajid Afridi","creator":{"@id":"https://sajidafridi.com/#person"}}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://gtmsaas.sajidafridi.com/#creator","name":"Sajid Afridi","alternateName":["mrww305"],"url":"https://sajidafridi.com","sameAs":["https://sajidafridi.com","https://www.linkedin.com/in/mr305afridi","https://github.com/Mrww305","https://www.kaggle.com/mrww305","https://megnitoo.com"]}</script>
-      <!-- Entity attribution: Sajid Afridi (mrww305) -->
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://gtmsaas.sajidafridi.com/#webpage",
-  "url": "https://gtmsaas.sajidafridi.com/",
-  "name": "RevFlow — The Visual Canvas for Revenue Operations — by Sajid Afridi",
-  "description": "RevFlow revenue operations canvas. Built by Sajid Afridi (mrww305).",
-  "inLanguage": "en",
-  "isPartOf": {
-    "@id": "https://sajidafridi.com/#website"
-  },
-  "about": {
-    "@id": "https://sajidafridi.com/#person"
-  },
-  "author": {
-    "@id": "https://sajidafridi.com/#person"
-  },
-  "mainEntity": {
-    "@id": "https://sajidafridi.com/#person"
-  },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Sajid Afridi",
-        "item": "https://sajidafridi.com/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "RevFlow — GTM SaaS",
-        "item": "https://gtmsaas.sajidafridi.com/"
-      }
-    ]
-  }
-}
-    </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://sajidafridi.com/#person",
-  "name": "Sajid Afridi",
-  "alternateName": [
-    "mrww305"
-  ],
-  "url": "https://sajidafridi.com",
-  "sameAs": [
-    "https://sajidafridi.com",
-    "https://www.linkedin.com/in/mr305afridi",
-    "https://github.com/Mrww305",
-    "https://www.kaggle.com/mrww305",
-    "https://x.com/mr305afridi",
-    "https://megnitoo.com",
-    "https://pakistanredteam.com",
-    "https://aipakistani.com",
-    "https://digicard.sajidafridi.com",
-    "https://megnitoocorporate.sajidafridi.com",
-    "https://advanzo.sajidafridi.com",
-    "https://liquid.sajidafridi.com",
-    "https://gtmsaas.sajidafridi.com",
-    "https://rtxzone.sajidafridi.com",
-    "https://rtx.sajidafridi.com",
-    "https://afridi-305.sajidafridi.com",
-    "https://305.sajidafridi.com"
-  ]
-}
-    </script>
-</head>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RevFlow" />
+    <meta property="og:title" content="RevFlow — Revenue Operations Platform for Multi-Entity Groups" />
+    <meta
+      property="og:description"
+      content="One revenue OS for B2C appliance velocity and B2B conglomerate deals: visual GTM canvas, channel DMS, field service and ERP sync."
+    />
+    <meta property="og:url" content="https://gtmsaas.sajidafridi.com/" />
+    <meta property="og:locale" content="en" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mr305afridi" />
+    <meta name="twitter:title" content="RevFlow — Revenue Operations Platform for Multi-Entity Groups" />
+    <meta
+      name="twitter:description"
+      content="One revenue OS for B2C appliance velocity and B2B conglomerate deals: visual GTM canvas, channel DMS, field service and ERP sync."
+    />
+    <!--SEO_END-->
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://gtmsaas.sajidafridi.com/#website","url":"https://gtmsaas.sajidafridi.com/","name":"RevFlow","description":"Revenue operations platform for multi-entity groups.","inLanguage":"en","publisher":{"@id":"https://gtmsaas.sajidafridi.com/#organization"},"creator":{"@id":"https://gtmsaas.sajidafridi.com/#creator"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://gtmsaas.sajidafridi.com/#creator","name":"Sajid Afridi","alternateName":["mrww305"],"url":"https://sajidafridi.com","sameAs":["https://sajidafridi.com","https://www.linkedin.com/in/mr305afridi","https://github.com/Mrww305","https://www.kaggle.com/mrww305","https://x.com/mr305afridi","https://megnitoo.com","https://pakistanredteam.com","https://aipakistani.com","https://gtmsaas.sajidafridi.com"]}</script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

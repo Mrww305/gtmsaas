@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entries/entry-server.tsx --outDir .ssr --emptyOutDir && node scripts/prerender.mjs",
     "start": "node server/index.js",
     "dev:server": "node --watch server/index.js"
   },
