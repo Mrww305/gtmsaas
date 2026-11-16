@@ -590,6 +590,7 @@ if (fs.existsSync(DIST)) {
   app.use(
     express.static(DIST, {
       index: false,
+      redirect: false,
       maxAge: "1h",
       setHeaders(res, filePath) {
         // Prerendered HTML must revalidate so content and meta tags stay fresh.

@@ -27,3 +27,32 @@
 - Projects: https://sajidafridi.com/projects/
 - Live lab: https://sajidafridi.com/lab/
 - Contact: https://sajidafridi.com/contact/
+
+## RevFlow site
+
+- Home: https://gtmsaas.sajidafridi.com/
+- Platform: https://gtmsaas.sajidafridi.com/platform
+- Solutions: https://gtmsaas.sajidafridi.com/solutions
+- Appliance brands: https://gtmsaas.sajidafridi.com/solutions/enviro-pakistan
+- Industrial zones: https://gtmsaas.sajidafridi.com/solutions/jw-sez
+- Commercial vehicles: https://gtmsaas.sajidafridi.com/solutions/jw-forland
+- Regional distribution: https://gtmsaas.sajidafridi.com/solutions/rd-distribution
+- Integrations: https://gtmsaas.sajidafridi.com/integrations
+- Pricing: https://gtmsaas.sajidafridi.com/pricing
+- About: https://gtmsaas.sajidafridi.com/about
+- Contact: https://gtmsaas.sajidafridi.com/contact
+- Live demo: https://gtmsaas.sajidafridi.com/demo
+
+## What RevFlow is
+
+RevFlow is a revenue operations platform for multi-entity groups. It unifies B2C appliance
+operations (warranty registry, dealer credit control, technician dispatch) with B2B
+conglomerate pipeline (institutional opportunities, cross-vertical bundling) on eight core
+records: Entity_Vertical, Account, Contact, Product_Catalog, Customer_Asset,
+B2B_Opportunity, Channel_Order and Service_Ticket. It syncs with SAP S/4HANA, Oracle
+NetSuite and Microsoft Dynamics 365, and takes warranty intake from WhatsApp.
+
+The public demo runs on seeded Pakistani data (Lahore, Karachi, Islamabad, PKR pricing)
+with four role-based personas and a 14-day retention window. Demo accounts are purged
+automatically after 14 days.
+
